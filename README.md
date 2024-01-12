@@ -2,11 +2,11 @@
 
 ## Spis treści
 
--   [Autorzy]()
--   [Założenia projektu]()
--   [Specyfikacja]()
--   [Inicjalizacja]()
--   [Przykłady kodu]()
+-   [Autorzy](#autorzy)
+-   [Założenia projektu](#założenia-projektu)
+-   [Technologie](#technologie)
+-   [Inicjalizacja](#inicjalizacja)
+-   [Przykłady kodu](#przykłady-kodu)
 
 ## Autorzy
 
@@ -20,6 +20,8 @@
 Projekt wykorzystuje `React Native`, który pozwala pisać kod, który będzie działać zarówno na telefonach z androidem oraz ios.
 
 Całość, będziemy pisać w języku `TypeScript`, który działa tak samo jak `JavaScript` z tą różnicą, że pozwala nam korzystać ze statycznych typów danych.
+
+W celu wyświetlenia naszej aplikacji, na naszym telefonie musimy zainstalować aplikację `Expo Go` ([Po co?](#inicjalizacja))
 
 ## Założenia Projektu
 

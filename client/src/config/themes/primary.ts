@@ -1,5 +1,3 @@
-import { ThemeConfig } from 'types';
-
 export const primaryTheme = {
 	colors: {
 		primary: '#1D243E',

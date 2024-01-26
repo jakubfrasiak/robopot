@@ -12,7 +12,7 @@ export default function LayoutStack() {
 				tabBarStyle: {
 					backgroundColor: primaryTheme.colors.accent,
 					position: 'absolute',
-					height: 72,
+					height: 100,
 					bottom: 0,
 				},
 			}}>

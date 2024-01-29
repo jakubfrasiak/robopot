@@ -17,11 +17,9 @@
 
 ## Technologie
 
-Projekt wykorzystuje `React Native`, który pozwala pisać kod, który będzie działać zarówno na telefonach z androidem oraz ios.
+Projekt wykorzystuje `React Native`, który pozwala pisać kod, który będzie działać zarówno na telefonach z androidem jak i ios.
 
 Całość, będziemy pisać w języku `TypeScript`, który działa tak samo jak `JavaScript` z tą różnicą, że pozwala nam korzystać ze statycznych typów danych.
-
-W celu wyświetlenia naszej aplikacji, na naszym telefonie musimy zainstalować aplikację `Expo Go` ([Po co?](#inicjalizacja))
 
 ## Założenia Projektu
 
@@ -37,10 +35,10 @@ Sklonuj projekt
   git clone https://github.com/jakubfrasiak/robopot.git
 ```
 
-Przejdź do folderu projektu
+Przejdź do folderu server
 
 ```bash
-  cd robopot
+  cd robopot/server
 ```
 
 Zainstaluj wymagane zależności
@@ -49,13 +47,23 @@ Zainstaluj wymagane zależności
   npm install
 ```
 
-Włącz aplikację
+Włącz serwer
 
 ```bash
   npm run start
 ```
 
-Zeskanuj wygenerowany kod QR w aplikacji Expo Go. Należy pamiętać, że zarówno komputer jak i telefon musi być podłączony do jednej sieci.
+Otwórz kolejny terminal i przenieś się do clienta
+
+```bash
+  cd client
+```
+
+Włącz aplikację
+
+```bash
+  npm run android
+```
 
 ## Przykłady kodu
 

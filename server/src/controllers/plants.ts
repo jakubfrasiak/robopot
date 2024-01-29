@@ -6,10 +6,8 @@ export class PlantController {
 	public async allPlants(limit: number): Promise<Array<Plant>> {
 		return await plants.find().limit(limit);
 	}
-	public async plant(plantName: string): Promise<Plant> {
-		return await plants.findOne({
-			name: plantName,
-		});
+	public async plant(plantId: string): Promise<Plant> {
+		return await plants.findById(plantId);
 	}
 	public async createPlant(params: PlantBuild): Promise<Plant> {
 		return await plants.create(params);

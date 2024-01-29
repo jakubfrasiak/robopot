@@ -100,8 +100,8 @@ app.get('/plants', async (req: Request, res: Response) => {
 	});
 });
 
-app.get('/plants/:plantName', async (req: Request, res: Response) => {
-	const found = await plantController.plant(req.params.plantName);
+app.get('/plants/:id', async (req: Request, res: Response) => {
+	const found = await plantController.plant(req.params.id);
 	const statusCode = found ? 200 : 404;
 
 	res.statusCode = statusCode;

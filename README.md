@@ -59,6 +59,12 @@ Otwórz kolejny terminal i przenieś się do clienta
   cd client
 ```
 
+Zainstaluj wymagane zależności
+
+```bash
+  npm install
+```
+
 Włącz aplikację
 
 ```bash

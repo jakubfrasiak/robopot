@@ -1,18 +1,17 @@
 import { Compass, Pot, User } from '@/config/constants/icons';
-import { primaryTheme } from '@/config/themes/primary';
+import { theme } from '@/config/themes/primary';
 import { Tabs } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet, View } from 'react-native';
 
 export default function Layout() {
 	return (
 		<>
-			<StatusBar style={'light'} translucent={false} backgroundColor={primaryTheme.colors.primary} />
 			<Tabs
 				screenOptions={{
 					headerShown: false,
 					tabBarStyle: {
-						backgroundColor: primaryTheme.colors.accent,
+						backgroundColor: theme.colors.accent,
 						position: 'relative',
 						height: 75,
 						bottom: 0,
@@ -25,32 +24,21 @@ export default function Layout() {
 						tabBarIcon: ({ focused, color, size }) => {
 							return (
 								<View style={style.icon}>
-									<Pot
-										width={33}
-										height={33}
-										style={{ color: focused ? primaryTheme.colors.white : primaryTheme.colors.secondary }}
-									/>
+									<Pot width={33} height={33} style={{ color: focused ? theme.colors.white : theme.colors.secondary }} />
 								</View>
 							);
 						},
 					}}
 				/>
 				<Tabs.Screen
-					name='plants/[id]'
-					initialParams={{
-						id: 'none',
-					}}
+					name='plants/index'
 					options={{
 						title: '',
 
 						tabBarIcon: ({ focused, color, size }) => {
 							return (
 								<View style={style.icon}>
-									<Compass
-										width={33}
-										height={33}
-										style={{ color: focused ? primaryTheme.colors.white : primaryTheme.colors.secondary }}
-									/>
+									<Compass width={33} height={33} style={{ color: focused ? theme.colors.white : theme.colors.secondary }} />
 								</View>
 							);
 						},
@@ -63,11 +51,7 @@ export default function Layout() {
 						tabBarIcon: ({ focused, color, size }) => {
 							return (
 								<View style={style.icon}>
-									<User
-										width={33}
-										height={33}
-										style={{ color: focused ? primaryTheme.colors.white : primaryTheme.colors.secondary }}
-									/>
+									<User width={33} height={33} style={{ color: focused ? theme.colors.white : theme.colors.secondary }} />
 								</View>
 							);
 						},
@@ -82,6 +66,6 @@ const style = StyleSheet.create({
 	icon: {
 		alignItems: 'center',
 		paddingTop: 16,
-		color: primaryTheme.colors.secondary,
+		color: theme.colors.secondary,
 	},
 });

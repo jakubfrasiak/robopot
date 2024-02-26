@@ -1,5 +1,5 @@
 import { Redirect } from 'expo-router';
 
 export default function App() {
-	return Redirect({ href: '/plants/[id]' });
+	return Redirect({ href: '/plants' });
 }

@@ -32,17 +32,17 @@ app.post('/plants', async (req: Request, res: Response) => {
 			req.body?.lightAvailable
 		)
 	) {
-		console.log([
-			['name', req.body?.name],
-			['description', req.body?.description],
-			['image', req.body?.image],
-			['pH', req.body?.pH],
-			['soilMoisture', req.body?.soilMoisture],
-			['airHumidity', req.body?.airHumidity],
-			['airTemperature', req.body?.airTemperature],
-			['waterAvailable', req.body?.waterAvailable],
-			['lightAvailable', req.body?.lightAvailable],
-		]);
+		// console.log([
+		// 	['name', req.body?.name],
+		// 	['description', req.body?.description],
+		// 	['image', req.body?.image],
+		// 	['pH', req.body?.pH],
+		// 	['soilMoisture', req.body?.soilMoisture],
+		// 	['airHumidity', req.body?.airHumidity],
+		// 	['airTemperature', req.body?.airTemperature],
+		// 	['waterAvailable', req.body?.waterAvailable],
+		// 	['lightAvailable', req.body?.lightAvailable],
+		// ]);
 		res.statusCode = 400;
 		return res.send({
 			statusCode: 400,
@@ -90,7 +90,7 @@ app.post('/plants', async (req: Request, res: Response) => {
 });
 
 app.get('/plants', async (req: Request, res: Response) => {
-	const found = await plantController.allPlants(10);
+	const found = await plantController.allPlants(100);
 	const statusCode = found.length > 0 ? 200 : 404;
 	res.statusCode = statusCode;
 	return res.send({
@@ -104,11 +104,15 @@ app.get('/plants/:id', async (req: Request, res: Response) => {
 	const found = await plantController.plant(req.params.id);
 	const statusCode = found ? 200 : 404;
 
+	console.log(req);
+	console.log('=-====-=-=-=-=-=-=-=-=-=-');
+	console.log(found);
+
 	res.statusCode = statusCode;
 	res.send({
 		statusCode,
-		message: found ? 'No plant found' : 'Success',
-		data: found,
+		message: found ? 'No  found' : 'Success',
+		data: found || 'none',
 	});
 });
 

@@ -18,7 +18,7 @@ export default function PotPreview(props: PotDetailsProps) {
 
 	const fetchPlant = async () => {
 		try {
-			const QUERY = await (await fetch(`http://192.168.1.134:5000/plants/${props.name}`)).json();
+			const QUERY = await (await fetch(`http://212.106.130.122:5000/plants/${props.name}`)).json();
 			setPlant(QUERY.data);
 		} catch (error) {
 			console.log('jest błąd o nie!');
@@ -74,13 +74,6 @@ export default function PotPreview(props: PotDetailsProps) {
 							<View style={styles.row}>
 								<Text style={styles.table}>Temperatura powietrza:</Text>
 								<Text style={styles.table}>{plant.airTemperature}°C</Text>
-							</View>
-							<View style={styles.divider} />
-						</View>
-						<View style={styles.cell}>
-							<View style={styles.row}>
-								<Text style={styles.table}>Dostępność wody:</Text>
-								<Text style={styles.table}>{plant.waterAvailable}</Text>
 							</View>
 							<View style={styles.divider} />
 						</View>

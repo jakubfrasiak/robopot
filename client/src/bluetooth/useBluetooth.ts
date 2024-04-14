@@ -1,12 +1,11 @@
 import RNBluetoothClassic, {
 	BluetoothDevice,
 	BluetoothDeviceReadEvent,
-	BluetoothError,
 	BluetoothEventSubscription,
 } from 'react-native-bluetooth-classic';
 
 /* eslint-disable no-bitwise */
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { useState } from 'react';
 import { PermissionsAndroid, Platform } from 'react-native';
 // import { BleManager, Device } from 'react-native-ble-plx';
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, Modal, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { theme } from '@/config/themes/primary';
 import PotPreview from '@/components/PotPreview';
 import { LinearGradient } from 'expo-linear-gradient';
 import { shortenDescription } from '@/scripts/shortenDescription';
+import { Plant } from '../../../server/types';
 
 const App = () => {
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -11,7 +12,7 @@ const App = () => {
 
 	const fetchPots = async () => {
 		try {
-			const QUERY = await (await fetch('http://192.168.1.134:5000/plants')).json();
+			const QUERY = await (await fetch('http://212.106.130.122:5000/plants')).json();
 			setData(QUERY.data);
 		} catch (error) {
 			console.log('jest błąd o nie!');

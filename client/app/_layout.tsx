@@ -21,7 +21,7 @@ export default function Layout() {
 					name='pots/index'
 					options={{
 						title: '',
-						tabBarIcon: ({ focused, color, size }) => {
+						tabBarIcon: ({ focused}) => {
 							return (
 								<View style={style.icon}>
 									<Pot width={33} height={33} style={{ color: focused ? theme.colors.white : theme.colors.secondary }} />
@@ -35,7 +35,7 @@ export default function Layout() {
 					options={{
 						title: '',
 
-						tabBarIcon: ({ focused, color, size }) => {
+						tabBarIcon: ({ focused }) => {
 							return (
 								<View style={style.icon}>
 									<Compass width={33} height={33} style={{ color: focused ? theme.colors.white : theme.colors.secondary }} />
@@ -48,7 +48,7 @@ export default function Layout() {
 					name='create/index'
 					options={{
 						title: '',
-						tabBarIcon: ({ focused, color, size }) => {
+						tabBarIcon: ({ focused }) => {
 							return (
 								<View style={style.icon}>
 									<User width={33} height={33} style={{ color: focused ? theme.colors.white : theme.colors.secondary }} />

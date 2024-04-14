@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Button, Image, ImageBackground, Modal, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ImageBackground, Modal, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Plant } from '../../../server/types';
 import { theme } from '@/config/themes/primary';
 import { LinearGradient } from 'expo-linear-gradient';
-import { readFromStorage, removeFromStorage, saveInStorage } from '@/scripts/storage';
+import { readFromStorage, saveInStorage } from '@/scripts/storage';
 import { rateConditions } from '@/scripts/rateConditions';
-import { BluetoothDevice } from 'react-native-bluetooth-classic';
 import { fixName } from '@/scripts/fixName';
 
 type PotDetailsProps = {
@@ -25,14 +24,12 @@ export default function PotDetails(props: PotDetailsProps) {
 	const [textInputValue, setTextInputValue] = useState<string>('');
 
 	const fetchPlant = async () => {
-		// await removeFromStorage(id);
-		// await saveInStorage(id, 'strelicja');
 		const plantName = await readFromStorage(props.id);
 		if (!plantName) {
 			setPlant(null);
 		} else {
 			try {
-				const QUERY = await (await fetch(`http://192.168.1.134:5000/plants/${plantName}`)).json();
+				const QUERY = await (await fetch(`http://212.106.130.122:5000/plants/${plantName}`)).json();
 				setPlant(QUERY.data);
 			} catch (error) {
 				console.log('jest błąd o nie!');
@@ -48,7 +45,7 @@ export default function PotDetails(props: PotDetailsProps) {
 	if (plant) {
 		return (
 			<>
-				<StatusBar barStyle={'light-content'} translucent backgroundColor={'#00000000'} />
+				<StatusBar barStyle={'light-content'} translucent backgroundColor={theme.colors.primary} />
 				<ScrollView style={{ flex: 1, backgroundColor: theme.colors.primary }}>
 					<ImageBackground
 						source={{ uri: plant.image }}
@@ -68,7 +65,7 @@ export default function PotDetails(props: PotDetailsProps) {
 										alignItems: 'center',
 									}}>
 									<View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-										<TextInput placeholder='Nazwa' onChangeText={(value) => setTextInputValue(value)} />
+										<TextInput placeholder='Nazwa' placeholderTextColor={theme.colors.white} onChangeText={(value) => setTextInputValue(value)} />
 										<Text style={styles['outlinedButton']} onPress={() => setIsModalVisible(false)}>
 											Anuluj
 										</Text>
@@ -168,14 +165,19 @@ export default function PotDetails(props: PotDetailsProps) {
 		);
 	} else {
 		return (
-			<ScrollView style={{ flex: 1, backgroundColor: theme.colors.primary }}>
-				<Text>Wczytywanie...</Text>
-			</ScrollView>
+			<View style={styles.container}>
+				<View style={styles.heartRateTitleWrapper}>
+				<Text style={styles.heartRateTitleText}>Połączono z:</Text>
+				</View>
+			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
+	container: { flex: 1, backgroundColor: theme.colors.primary },
+	heartRateTitleWrapper: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+	heartRateTitleText: { fontSize: 30, fontWeight: 'bold', textAlign: 'center', marginHorizontal: 20, color: 'white' },
 	table: { color: theme.colors.white, fontSize: 16, fontWeight: '600' },
 	header: { color: theme.colors.white, fontSize: 16, fontWeight: '600' },
 	row: { display: 'flex', flexDirection: 'row', justifyContent: 'space-between' },

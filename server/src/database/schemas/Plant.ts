@@ -8,7 +8,7 @@ const PlantSchema = new Schema<PlantBuild>(
 		image: { type: SchemaTypes.String, required: true },
 		airHumidity: { type: SchemaTypes.Number, required: true, min: 0, max: 100 },
 		airTemperature: { type: SchemaTypes.Number, required: true, min: 0, max: 40 },
-		waterAvailable: { type: SchemaTypes.Number, required: true, min: 0, max: 2 },
+		waterAvailable: { type: SchemaTypes.Number, required: true, min: 0, max: 2 }, // do wywalenia.
 		pH: { type: SchemaTypes.Number, required: true, min: 0, max: 14 },
 		soilMoisture: { type: SchemaTypes.Number, required: true, min: 0, max: 100 },
 		lightAvailable: { type: SchemaTypes.Number, required: true, min: 0, max: 100 },

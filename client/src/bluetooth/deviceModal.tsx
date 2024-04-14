@@ -1,11 +1,11 @@
 import { theme } from '@/config/themes/primary';
 import { fixName } from '@/scripts/fixName';
-import { readFromStorage } from '@/scripts/storage';
+import { readFromStorage, saveInStorage } from '@/scripts/storage';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { Text, StyleSheet, TouchableOpacity, ImageBackground, View, Modal } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, ImageBackground, View } from 'react-native';
 import { BluetoothDevice } from 'react-native-bluetooth-classic';
+import { Plant } from '../../../server/types';
 
 type DeviceButtonProps = {
 	device: BluetoothDevice;
@@ -22,16 +22,16 @@ const DeviceButton = (props: DeviceButtonProps) => {
 		props.connect(props.device);
 	}, [props.connect, props.device]);
 
-	const router = useRouter();
-	const [plant, setPlant] = useState(null);
+	const [plant, setPlant] = useState<Plant|null>(null);
 
 	const fetchPots = async () => {
 		try {
+			// await saveInStorage(fixName(props.device.id), 'dracena')
 			const plantId = await readFromStorage(fixName(props.device.id));
 			if (!plantId) {
 				setPlant(null);
 			} else {
-				const QUERY = await (await fetch(`http://192.168.1.134:5000/plants/${plantId}`)).json();
+				const QUERY = await (await fetch(`http://212.106.130.122:5000/plants/${plantId}`)).json();
 				setPlant(QUERY.data);
 			}
 		} catch (error) {
@@ -66,7 +66,8 @@ const DeviceButton = (props: DeviceButtonProps) => {
 		<TouchableOpacity
 			onPress={() => {
 				connect();
-				router.push({ pathname: '/pots/[id]', params: { id: fixName(props.device.id) } });
+				props.showModal();
+				// router.push({ pathname: '/pots/[id]', params: { id: fixName(props.device.id) } });
 			}}>
 			<LinearGradient colors={['#4E5983', '#4E5983']} style={{ borderRadius: 12, marginBottom: 20, marginHorizontal: 20, height: 150 }}>
 				<View style={styles.card}>

@@ -6,7 +6,7 @@ import 'dotenv/config';
 import { PlantController } from './controllers/plants.js';
 
 const app: Express = express();
-const port = parseInt(process.env.PORT) || 5000;
+const port = parseInt(process.env.PORT as string) || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -24,11 +24,9 @@ app.post('/plants', async (req: Request, res: Response) => {
 			req.body?.name &&
 			req.body?.description &&
 			req.body?.image &&
-			req.body?.pH &&
 			req.body?.soilMoisture &&
 			req.body?.airHumidity &&
 			req.body?.airTemperature &&
-			req.body?.waterAvailable &&
 			req.body?.lightAvailable
 		)
 	) {
@@ -49,7 +47,11 @@ app.post('/plants', async (req: Request, res: Response) => {
 			message: "You didn't provide required data. Please check it again",
 		});
 	}
-	const { name, airHumidity, airTemperature, description, image, pH, soilMoisture, waterAvailable, lightAvailable } = req.body;
+	const { name, airHumidity, airTemperature, description, image, soilMoisture, lightAvailable } = req.body;
+	
+	const pH = 14;
+
+	const waterAvailable = 2
 	if (
 		!(
 			typeof name === 'string' ||
@@ -58,15 +60,13 @@ app.post('/plants', async (req: Request, res: Response) => {
 			(typeof airTemperature === 'number' && airTemperature <= 40 && airTemperature >= 0) ||
 			typeof description === 'string' ||
 			typeof image === 'string' ||
-			(typeof pH === 'number' && pH <= 14 && pH >= 0) ||
-			(typeof soilMoisture === 'number' && soilMoisture <= 100 && soilMoisture >= 0) ||
-			(typeof waterAvailable === 'number' && waterAvailable <= 2 && waterAvailable >= 0)
+			(typeof soilMoisture === 'number' && soilMoisture <= 100 && soilMoisture >= 0)
 		)
 	) {
 		res.statusCode = 400;
 		return res.send({
 			statusCode: 400,
-			message: 'Invalid data provided. Please check it again',
+			message: 'Invalid data has been provided. Please check it again',
 		});
 	}
 
@@ -81,6 +81,8 @@ app.post('/plants', async (req: Request, res: Response) => {
 		waterAvailable,
 		lightAvailable,
 	});
+
+	console.log(created)
 
 	return res.send({
 		statusCode: 201,
@@ -104,14 +106,12 @@ app.get('/plants/:id', async (req: Request, res: Response) => {
 	const found = await plantController.plant(req.params.id);
 	const statusCode = found ? 200 : 404;
 
-	console.log(req);
-	console.log('=-====-=-=-=-=-=-=-=-=-=-');
 	console.log(found);
 
 	res.statusCode = statusCode;
 	res.send({
 		statusCode,
-		message: found ? 'No  found' : 'Success',
+		message: found ? 'No plant has been found' : 'Success',
 		data: found || 'none',
 	});
 });

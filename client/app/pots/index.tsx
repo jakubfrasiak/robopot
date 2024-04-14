@@ -7,7 +7,7 @@ import { fetchPotsFromDevices } from '@/scripts/fetchPots';
 import PotDetails from '@/components/PotDetails';
 import { fixName } from '@/scripts/fixName';
 
-const App = () => {
+export default function App () {
 	const {
 		requestPermissions,
 		startDiscovery,
@@ -22,21 +22,21 @@ const App = () => {
 
 	const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
-	const [temperature, setTemperature] = useState<number | any>(0);
-	const [airHumidity, setAirHumidity] = useState<number | any>(0);
-	const [waterLevel, setWaterLevel] = useState<number | any>(0);
-	const [soilMoisture, setSoilMoisture] = useState<number | any>(0);
-	const [lightAvailable, SetLightAvailable] = useState<number | any>(0);
+	const [temperature, setTemperature] = useState<number>(0);
+	const [airHumidity, setAirHumidity] = useState<number>(0);
+	const [waterLevel, setWaterLevel] = useState<number>(0);
+	const [soilMoisture, setSoilMoisture] = useState<number>(0);
+	const [lightAvailable, SetLightAvailable] = useState<number>(0);
 
 	useEffect(() => {
 		if (deviceData) {
 			console.log('odebrałem dane!');
 			const splited = deviceData.split(' ');
-			setAirHumidity(splited[0]);
-			setTemperature(splited[1]);
-			setWaterLevel(splited[2]);
-			setSoilMoisture(splited[3]);
-			SetLightAvailable(splited[4]);
+			setAirHumidity(parseInt(splited[0]));
+			setTemperature(parseInt(splited[1]));
+			setWaterLevel(parseInt(splited[2]));
+			setSoilMoisture(parseInt(splited[3]));
+			SetLightAvailable(parseInt(splited[4]));
 		}
 	}, [deviceData]);
 
@@ -86,13 +86,6 @@ const App = () => {
 					) : (
 						<Text>Coś poszło nie tak!</Text>
 					)}
-					{/* <TouchableOpacity
-						style={styles.ctaButton}
-						onPress={() => {
-							console.log(deviceData.current);
-						}}>
-						<Text style={styles.ctaButtonText}>{text}</Text>
-					</TouchableOpacity> */}
 				</Modal>
 				<DeviceList
 					devices={fetchPotsFromDevices(allDevices)}
@@ -149,5 +142,3 @@ const styles = StyleSheet.create({
 	},
 	ctaButtonText: { fontSize: 18, fontWeight: 'bold', color: 'white' },
 });
-
-export default App;

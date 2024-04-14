@@ -1,16 +1,7 @@
-import { useEffect, useState } from 'react';
-import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { theme } from '@/config/themes/primary';
-import { Redirect, useNavigation, useRouter } from 'expo-router';
-import { shortenDescription } from '@/scripts/shortenDescription';
 import useBluetooth from '@/bluetooth/useBluetooth';
-
-import { BluetoothDevice } from 'react-native-bluetooth-classic';
-
 export default function PotList() {
-	const router = useRouter();
-
 	const { requestPermissions, startDiscovery, allDevices, connectedDevice, disconnectFromDevice } = useBluetooth();
 
 	console.log('list');
